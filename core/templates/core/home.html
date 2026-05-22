@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Home — My Website{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <h1>Welcome to {{ site_name }}</h1>
+  <p class="hero-subtitle">{{ tagline }}</p>
+  <a href="{% url 'about' %}" class="btn">Learn more about me</a>
+</section>
+
+<section class="features">
+  {% for feature in features %}
+  <div class="feature-card">
+    <h3>{{ feature.title }}</h3>
+    <p>{{ feature.description }}</p>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
