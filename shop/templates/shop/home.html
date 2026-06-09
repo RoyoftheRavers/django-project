@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Shop — My Website{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <h1>Shop</h1>
+  <p class="hero-subtitle">Merchandise for Dublin football and music fans.</p>
+</section>
+
+<section class="shop-section">
+
+  <div class="filter-bar">
+    <a href="{% url 'shop_home' %}" 
+       class="filter-btn {% if current_category == 'all' %}active{% endif %}">All</a>
+    <a href="{% url 'shop_home' %}?category=clothing" 
+       class="filter-btn {% if current_category == 'clothing' %}active{% endif %}">Clothing</a>
+    <a href="{% url 'shop_home' %}?category=accessories" 
+       class="filter-btn {% if current_category == 'accessories' %}active{% endif %}">Accessories</a>
+  </div>
+
+  <div class="product-grid">
+    {% for product in products %}
+    <div class="product-card">
+      <h3>{{ product.name }}</h3>
+      <p class="product-description">{{ product.description }}</p>
+      <p class="product-price">€{{ product.price }}</p>
+      <a href="{% url 'product_detail' product.pk %}" class="btn">View product</a>
+    </div>
+    {% empty %}
+    <p>No products available.</p>
+    {% endfor %}
+  </div>
+
+</section>
+
+{% endblock %}
