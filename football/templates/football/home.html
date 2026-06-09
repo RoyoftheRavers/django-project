@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Football — My Website{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <h1>{{ title }}</h1>
+  <p class="hero-subtitle">{{ subtitle }}</p>
+</section>
+
+<section class="coming-soon">
+  <h2>Live data coming soon</h2>
+  <p>This page will show live Premier League standings and Manchester United results once the Django backend is fully set up.</p>
+  <a href="{% url 'home' %}" class="btn">Back to home</a>
+</section>
+
+{% endblock %}
