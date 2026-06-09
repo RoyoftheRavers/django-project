@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Contact
+from .forms import ContactForm
 
 def home(request):
     context = {
@@ -14,34 +15,23 @@ def home(request):
     return render(request, 'core/home.html', context)
 
 def about(request):
-    context = {
-        'site_name': 'My Website',
-    }
-    return render(request, 'core/about.html', context)
+    return render(request, 'core/about.html', {'site_name': 'My Website'})
 
 def contact(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        subject = request.POST.get('subject')
-        message = request.POST.get('message')
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            Contact.objects.create(
+                name=form.cleaned_data['name'],
+                email=form.cleaned_data['email'],
+                subject=form.cleaned_data['subject'],
+                message=form.cleaned_data['message']
+            )
+            return redirect('contact_success')
+    else:
+        form = ContactForm()
 
-        print('POST data:', request.POST)
-        print('name:', name)
-        print('email:', email)
-        print('subject:', subject)
-        print('message:', message)
-
-        Contact.objects.create(
-            name=name,
-            email=email,
-            subject=subject,
-            message=message
-        )
-
-        return redirect('contact_success')
-
-    return render(request, 'core/contact.html')
+    return render(request, 'core/contact.html', {'form': form})
 
 def contact_success(request):
     return render(request, 'core/contact_success.html')
