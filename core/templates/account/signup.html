@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Register — My Website{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <h1>Create an account</h1>
+  <p class="hero-subtitle">Join to access exclusive content and shop updates.</p>
+</section>
+
+<section class="auth-section">
+  <div class="auth-card">
+    <form method="POST" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn">Create account</button>
+    </form>
+    <p class="auth-link">Already have an account? <a href="{% url 'account_login' %}">Sign in here</a></p>
+  </div>
+</section>
+
+{% endblock %}

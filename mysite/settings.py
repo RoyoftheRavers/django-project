@@ -37,12 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',    
-    'allauth',                 
-    'allauth.account', 
+    'django.contrib.sites',     
     'core',
     'shop',
     'football',
+    'allauth',                 
+    'allauth.account',
 ]
 
 MIDDLEWARE = [
