@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Contact
 from .forms import ContactForm
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     context = {
@@ -35,3 +36,10 @@ def contact(request):
 
 def contact_success(request):
     return render(request, 'core/contact_success.html')
+
+@login_required
+def profile(request):
+    context = {
+        'user': request.user,
+    }
+    return render(request, 'core/profile.html', context)

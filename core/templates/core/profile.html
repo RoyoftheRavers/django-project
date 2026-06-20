@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+
+{% block title %}My Profile — My Website{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <h1>My profile</h1>
+  <p class="hero-subtitle">Your account details.</p>
+</section>
+
+<section class="auth-section">
+  <div class="auth-card">
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email|default:"Not provided" }}</p>
+    <p><strong>Joined:</strong> {{ user.date_joined|date:"d M Y" }}</p>
+    <a href="{% url 'account_logout' %}" class="btn">Log out</a>
+  </div>
+</section>
+
+{% endblock %}
